@@ -1,0 +1,11 @@
+[Unit]
+Description=Lo-Texto
+After=multi-user.target
+
+[Service]
+User=tvlic
+Type=simple
+ExecStart=/usr/bin/python3 /home/tvlic/lo-texto/server/main.py
+
+[Install]
+WantedBy=multi-user.target
