@@ -149,22 +149,27 @@ def send_downlink(client: mqtt.Client, payload: dict):
 
 def main():
 
-    # Creating client
-    client = mqtt.Client()
-    client.on_message = on_message
-    client.username_pw_set(TTN_APP_ID, TTN_API_KEY)
+    while True:
+        try:
+            # Creating client
+            client = mqtt.Client()
+            client.on_message = on_message
+            client.username_pw_set(TTN_APP_ID, TTN_API_KEY)
 
-    # IMPORTANT - this enables the encryption of messages
-    client.tls_set()
+            # IMPORTANT - this enables the encryption of messages
+            client.tls_set()
 
-    # Connecting to the broker
-    client.connect(TTN_HOSTNAME, TTN_PORT)
+            # Connecting to the broker
+            client.connect(TTN_HOSTNAME, TTN_PORT)
 
-    # Subscribing to ALL topics
-    client.subscribe("#", QOS)
+            # Subscribing to ALL topics
+            client.subscribe("#", QOS)
 
-    # Looping for ever
-    client.loop_forever()
+            # Looping for ever
+            client.loop_forever()
+            
+        except:
+            continue
 
 
 # ------------------------------MAIN CALL------------------------------
